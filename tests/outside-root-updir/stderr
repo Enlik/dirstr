@@ -1,0 +1,2 @@
+Path outside root: './dir1/../../root_dir'
+aborting

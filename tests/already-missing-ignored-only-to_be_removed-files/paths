@@ -1,0 +1,9 @@
+a ./file1
+a ./dir2/dir3/dir4/file4
+b ./dir2/dir3/dir4
+a ./dir2/dir3/file3
+a ./dir2/dir3
+a ./dir2
+b ./dir1/file2
+a ./dir1
+a .

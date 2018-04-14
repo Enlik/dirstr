@@ -1,0 +1,11 @@
+additional 9 item(s) not present in spec (showing up to 10):
+.
+dir1
+dir1/file2
+dir2
+dir2/dir3
+dir2/dir3/dir4
+dir2/dir3/dir4/file4
+dir2/dir3/file3
+file1
+aborting
