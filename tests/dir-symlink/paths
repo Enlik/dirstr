@@ -1,0 +1,5 @@
+a ./file1
+a ./dir2
+a ./dir1/file2
+a ./dir1
+a .

@@ -95,13 +95,22 @@ def compare_dir_with_spec(root_dir, spec_lines):
     # one is not added. Handle it, so the path calculation is correct.
     root_dir_sanitized = root_dir.rstrip(os.path.sep)
 
-    for root, _, files in os.walk(root_dir_sanitized, onerror=onerror):
+    def cut_root_dir(path):
+        return path[len(root_dir_sanitized)+1:]
+
+    for root, dirs, files in os.walk(root_dir_sanitized, onerror=onerror):
         for f in files:
             path = os.path.join(root, f)
-            path = path[len(root_dir_sanitized)+1:]
-            fs_items.add(path)
+            fs_items.add(cut_root_dir(path))
 
-        directory = root[len(root_dir_sanitized)+1:]
+        for d in dirs:
+            # Unfortunately, symlinks to directories go to this list even with
+            # followlinks=False (default).
+            path = os.path.join(root, d)
+            if os.path.islink(path):
+                fs_items.add(cut_root_dir(path))
+
+        directory = cut_root_dir(root)
         if not directory:
             directory = "."
         fs_items.add(directory)
